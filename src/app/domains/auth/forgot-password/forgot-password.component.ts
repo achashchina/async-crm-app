@@ -14,7 +14,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { Ai1FormValidatorError } from '../form.errors';
 import { AuthService } from '../auth.service';
 import { CardModule } from 'primeng/card';
@@ -26,7 +25,6 @@ import { ButtonModule } from 'primeng/button';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    RouterLink,
     FormsModule,
     ReactiveFormsModule,
     CardModule,

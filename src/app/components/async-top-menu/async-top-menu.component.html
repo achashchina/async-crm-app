@@ -1,15 +1,10 @@
 <header
   class="bg-white flex justify-end items-center h-20 text-lg border-gray-200 border-b shadow-xs mobile:max-tablet:px-5"
 >
-  <span class="w-full p-inputtext flex items-center">
-    <input id="name" name="name" type="text" class="flex-1 mr-3" />
-  </span>
-
   @if (user$ | async) {
-  <button mat-stroked-button (click)="logout()">Logout</button>
+  <button (click)="logout()" class="mr-5">Logout</button>
   } @else {
   <button
-    mat-stroked-button
     [routerLink]="['auth', 'login']"
     routerLinkActive="router-link-active"
   >

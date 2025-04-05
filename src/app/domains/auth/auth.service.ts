@@ -69,7 +69,7 @@ export class AuthService {
       if (profile && profile.isNewUser)
         await this.saveUser(user.user, profile.profile ?? undefined);
 
-      this.redirect('domain');
+      this.redirect('home');
 
       return user;
     } catch (error) {
@@ -138,7 +138,7 @@ export class AuthService {
       this.saveUser(loggedUser.user, {});
 
       // redirect
-      this.redirect('domain');
+      this.redirect('home');
 
       return loggedUser;
     } catch (error) {
