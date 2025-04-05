@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+@import "primeicons/primeicons.css";
+
+/* @tailwind base; */
+@tailwind utilities;
+
+@layer base {
+  input, select, textarea, button {
+    @apply border border-gray-300 px-3 py-2 rounded;
+  }
+}
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "KumbhSans", sans-serif;
+  color: #505050;
+}
+
+@font-face {
+  font-family: "KumbhSans";
+  src: url("/fonts/KumbhSans.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "KumbhSans", "sans-serif";
+  --menu-height: 80px;
+  --container-h: calc(100vh - var(--menu-height));
+  --breakpoint-3xl: 120rem;
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+  --color-body-text: #505050;
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  
+}
+
+@keyframes scroll-watcher {
+  to {
+    scale: 1 1;
+  }
+}
+
+.scroll-watcher {
+  height: 15px;
+  width: 100%;
+  background: -webkit-linear-gradient(#45a0f5, #26e3c2);
+  opacity: 0.7;
+  position: fixed;
+  bottom: 0;
+  z-index: 10000;
+  scale: 0 1;
+  animation: scroll-watcher linear;
+  animation-timeline: scroll();
+  transform-origin: left;
+}
