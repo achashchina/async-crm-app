@@ -4,6 +4,11 @@ import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { AuthService } from '../../domains/auth/auth.service';
+import { Observable } from 'rxjs';
+import { User } from 'firebase/auth';
+import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'async-top-menu',
@@ -13,11 +18,14 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     InputGroupModule,
     InputGroupAddonModule,
     OverlayPanelModule,
+    AsyncPipe,
+    RouterLink
   ],
   templateUrl: './async-top-menu.component.html',
   styleUrl: './async-top-menu.component.scss',
 })
 export class AsyncTopMenuComponent {
+  user$!: Observable<User | null>;
   members = [
     {
       name: 'Amy Elsner',
@@ -38,4 +46,12 @@ export class AsyncTopMenuComponent {
       role: 'Viewer',
     },
   ];
+
+  constructor(private authService: AuthService) {
+    this.user$ = this.authService.user$;
+  }
+
+  logout() {
+    this.authService.logoutAndRedirect();
+  }
 }

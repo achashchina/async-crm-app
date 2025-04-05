@@ -5,6 +5,18 @@
     <input id="name" name="name" type="text" class="flex-1 mr-3" />
   </span>
 
+  @if (user$ | async) {
+  <button mat-stroked-button (click)="logout()">Logout</button>
+  } @else {
+  <button
+    mat-stroked-button
+    [routerLink]="['auth', 'login']"
+    routerLinkActive="router-link-active"
+  >
+    Login
+  </button>
+  }
+
   <p-avatar
     image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
     class="mr-2"

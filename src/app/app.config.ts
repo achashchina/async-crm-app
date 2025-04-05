@@ -1,27 +1,31 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
-import { provideHttpClient } from '@angular/common/http';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { environment } from '../environments/environments';
-
-import { routes } from './app.routes';
+import { getAuth, provideAuth as provideFireAuth } from '@angular/fire/auth';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getFunctions, provideFunctions } from '@angular/fire/functions';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withViewTransitions,
+} from '@angular/router';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+import { provideHttpClient } from '@angular/common/http';
 import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import { routes } from './app.routes';
+import { environment } from '../environments/environments';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
     providePrimeNG({
@@ -31,8 +35,22 @@ export const appConfig: ApplicationConfig = {
         options: {
           cssLayer: false,
         },
-       
       },
     }),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
+      withComponentInputBinding(),
+      withViewTransitions()
+    ),
+    provideAnimationsAsync(),
+
+    // firebase
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFireAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage()),
+    provideFunctions(() => getFunctions()),
   ],
 };

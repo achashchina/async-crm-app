@@ -1,0 +1,91 @@
+<div class="flex w-full justify-center p-3">
+  <p-card header="Register" class="w-lg">
+    <p-card>
+      <form
+        [formGroup]="registerForm"
+        class="flex flex-col justify-center space-y-1"
+      >
+        <div class="flex flex-col gap-2">
+          <label for="email">Email</label>
+          <input
+            pInputText
+            placeholder="example@mail.io"
+            id="email"
+            aria-describedby="email-help"
+            [formControlName]="registerProps.EMAIL"
+          />
+          @if (email?.invalid && (email?.dirty || email?.touched)) {
+          <small id="email-help" class="text-red-600">
+            {{ getError(email, registerProps.EMAIL) }}
+          </small>
+          }
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="username">Username</label>
+          <input
+            pInputText
+            id="username"
+            aria-describedby="username-help"
+            [formControlName]="registerProps.USERNAME"
+          />
+          @if (username?.invalid && (username?.dirty || username?.touched)) {
+          <small id="username-help" class="text-red-600">
+            {{ getError(username, registerProps.USERNAME) }}
+          </small>
+          }
+        </div>
+
+        <div class="flex flex-col gap-2 mb-5">
+            <label for="password">Password</label>
+            <div class="flex relative">
+              <input
+                class="w-full"
+                pInputText
+                id="password"
+                type="password"
+                [formControlName]="registerProps.PASSWORD"
+                placeholder="Password"
+                #passwordField
+              />
+              <button
+                class="absolute right-0 border-0"
+                type="button"
+                (click)="
+                  passwordField.type === 'password'
+                    ? (passwordField.type = 'text')
+                    : (passwordField.type = 'password')
+                "
+              >
+                @if (passwordField.type === 'password') {
+                <i class="pi pi-eye"></i>
+                } @if (passwordField.type === 'text') {
+  
+                <i class="pi pi-eye-slash"></i>
+                }
+              </button>
+            </div>
+            @if (password?.invalid && (password?.dirty || password?.touched)) {
+            <small id="password-help" class="text-red-600">
+              {{ getError(password, registerProps.PASSWORD) }}
+            </small>
+            }
+          </div>
+        <button
+          class="mt-4"
+          pButton
+          severity="success"
+          [disabled]="isFormDisabled"
+          (click)="registerEmail()"
+        >
+          @if (isSpin()) {
+          <i class="pi pi-spin pi-spinner"></i>
+          } @else { Register }
+        </button>
+      </form>
+    </p-card>
+    <div class="flex mt-5">
+      <button  [routerLink]="['/', 'auth', 'login']">Login</button>
+    </div>
+  </p-card>
+</div>

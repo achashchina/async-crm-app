@@ -1,0 +1,9 @@
+.wrapper-grid {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+
+    .main {
+        display: grid;
+        grid-template-rows: 80px 1fr;
+    }
+}

@@ -42,6 +42,10 @@ body {
   --color-avocado-500: oklch(0.84 0.18 117.33);
   --color-avocado-600: oklch(0.53 0.12 118.34);
   --color-body-text: #505050;
+  --color-custom-blue: #2F49C2;
+  --color-custom-green: #52936B;
+  --color-custom-purple: #9B6AF7;
+  --color-custom-pink: #BB34C9;
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
   
