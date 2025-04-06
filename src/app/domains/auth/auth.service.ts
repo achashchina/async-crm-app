@@ -19,7 +19,7 @@ import {
 } from '@angular/fire/auth';
 import { collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { TUser } from './types/user.type';
 
 @Injectable({
@@ -34,13 +34,17 @@ export class AuthService {
 
   // user
   get user$(): Observable<User | null> {
-    return authState(this.auth);
+    return of(this.auth.currentUser);
   }
 
   // public
   async signInWithPopupGoogle(): Promise<UserCredential> {
     try {
       const provider = new GoogleAuthProvider();
+      
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
       const user = await signInWithPopup(this.auth, provider);
 
       const profile = getAdditionalUserInfo(user);
