@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-export const NGS_TITLE_SUFFIX = ' | NGS';
+export const NGS_TITLE_SUFFIX = ' | async';
 
 export default [
     {

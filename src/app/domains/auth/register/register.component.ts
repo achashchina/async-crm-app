@@ -58,6 +58,7 @@ export default class RegisterComponent {
       Validators.required,
       Validators.minLength(6),
     ]),
+    
   });
 
   isSpin = signal(false);

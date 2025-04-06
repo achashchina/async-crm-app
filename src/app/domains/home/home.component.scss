@@ -1,9 +1,10 @@
 .wrapper-grid {
     display: grid;
     grid-template-columns: 3fr 9fr;
-
-    .main {
-        display: grid;
-        grid-template-rows: 80px 1fr;
-    }
 }
+
+@media (max-width: 999px) {
+    .wrapper-grid {
+        grid-template-columns: 97px 1fr;
+    }
+  }

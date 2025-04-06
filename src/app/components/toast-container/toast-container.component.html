@@ -1,0 +1,16 @@
+<p-toast
+  position="bottom-center"
+  key="confirm"
+  (onClose)="onReject()"
+  [baseZIndex]="5000"
+>
+  <ng-template let-message #message>
+    <div class="flex flex-col items-start flex-auto">
+      <div class="flex items-center gap-2">
+        <span class="font-bold">{{message.detail}}</span>
+      </div>
+      <div class="font-medium text-lg my-4">{{ message.summary }}</div>
+      
+    </div>
+  </ng-template>
+</p-toast>

@@ -21,9 +21,12 @@ import {
 } from '@angular/platform-browser';
 import { routes } from './app.routes';
 import { environment } from '../environments/environments';
+import { MessageService } from 'primeng/api';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    MessageService,
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideClientHydration(withEventReplay()),

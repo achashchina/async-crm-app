@@ -1,34 +1,59 @@
 <div class="nav-wrapper bg-white flex flex-col">
   <div
-    class="logo flex justify-start pl-5 items-center h-20 text-lg mobile:max-tablet:px-5 border-gray-200 border-r border-b"
+    class="logo flex justify-center md:justify-start md:pl-5 items-center h-20 text-lg mobile:max-tablet:px-5 border-gray-200 border-r border-b"
   >
     <img class="" alt="Logo-sm" routerLink="/" src="images/logo-sm.svg" />
-    <span class="font-display">AsyncMed</span>
+    <span class="font-display hidden md:block">AsyncMed</span>
   </div>
   <div
     class="nav-content p-5 border-gray-200 border-r h-[calc(100vh-var(--menu-height))]"
   >
     <ul>
-      <li class="p-5 mb-2 is-active ">
-        <i class="pi pi-objects-column pr-2"></i>
-        Dashboard
+      <li
+        class="p-5 flex items-center mb-2 "
+        routerLink="/home/dashboard"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="pi pi-objects-column md:pr-2"></i>
+        <span class="hidden md:block">Dashboard</span>
       </li>
-      <li class="p-5 mb-2">
-        <i class="pi pi-users pr-2"></i>
-        Employees
+      <li
+        class="p-5 flex items-center mb-2"
+        routerLink="/home/employees"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="pi pi-users md:pr-2"></i>
+        <span class="hidden md:block">Employees</span>
       </li>
-      <li class="p-5 mb-2">
-        <i class="pi pi-microchip-ai pr-2"></i>
-        AI Help
+      <li
+        class="p-5 flex items-center mb-2"
+        routerLink="/home/ai-help"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="pi pi-microchip-ai md:pr-2"></i>
+        <span class="hidden md:block"> AI Help </span>
       </li>
-      <li class="p-5 mb-2">
-        <i class="pi pi-book pr-2"></i>
-        Knowledge Base
+      <li
+        class="p-5 flex items-center mb-2"
+        routerLink="/home/knowledge-base"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="pi pi-book md:pr-2"></i>
+        <span class="hidden md:block">Knowledge Base</span>
       </li>
 
-      <li class="p-5 mb-2">
-        <i class="pi pi-compass pr-2"></i>
-        Onboarding
+      <li
+        class="p-5 flex items-center mb-2"
+        routerLink="/home/onboarding"
+        routerLinkActive="is-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <i class="pi pi-compass md:pr-2"></i>
+        <span class="hidden md:block">Onboarding</span>
       </li>
     </ul>
   </div>

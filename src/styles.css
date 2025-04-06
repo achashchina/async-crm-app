@@ -35,6 +35,7 @@ body {
   --menu-height: 80px;
   --container-h: calc(100vh - var(--menu-height));
   --breakpoint-3xl: 120rem;
+  --breakpoint-md: 1000px;
   --color-avocado-100: oklch(0.99 0 0);
   --color-avocado-200: oklch(0.98 0.04 113.22);
   --color-avocado-300: oklch(0.94 0.11 115.03);
@@ -69,4 +70,8 @@ body {
   animation: scroll-watcher linear;
   animation-timeline: scroll();
   transform-origin: left;
+}
+
+button:disabled {
+  opacity: .5;
 }

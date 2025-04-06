@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Auth,
   authState,
@@ -17,33 +17,44 @@ import {
   User,
   UserCredential,
 } from '@angular/fire/auth';
-import { collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
+import {
+  collection,
+  doc,
+  Firestore,
+  setDoc,
+  collectionData,
+} from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { TUser } from './types/user.type';
+import { ToastService } from '../../services/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  get user$(): Observable<User | null> {
+    return authState(this.auth);
+  }
+
   constructor(
     private router: Router,
     private auth: Auth,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private toastService: ToastService
   ) {}
 
-  // user
-  get user$(): Observable<User | null> {
-    return of(this.auth.currentUser);
+  getUsers(): Observable<TUser[]> {
+    const usersRef = collection(this.firestore, 'users');
+    return collectionData(usersRef, { idField: 'uid' }) as Observable<TUser[]>;
   }
 
-  // public
   async signInWithPopupGoogle(): Promise<UserCredential> {
     try {
       const provider = new GoogleAuthProvider();
-      
+
       provider.setCustomParameters({
-        prompt: 'select_account'
+        prompt: 'select_account',
       });
       const user = await signInWithPopup(this.auth, provider);
 
@@ -52,7 +63,7 @@ export class AuthService {
       if (profile && profile.isNewUser)
         await this.saveUser(user.user, profile.profile ?? undefined);
 
-      this.redirect('home');
+      this.redirect('home/dashboard');
 
       return user;
     } catch (error) {
@@ -73,7 +84,7 @@ export class AuthService {
       if (profile && profile.isNewUser)
         await this.saveUser(user.user, profile.profile ?? undefined);
 
-      this.redirect('home');
+      this.redirect('home/dashboard');
 
       return user;
     } catch (error) {
@@ -93,11 +104,13 @@ export class AuthService {
         (user && user['password']) || ''
       );
 
-      await this.updateUserProfile(loggedUser.user, {
-        displayName: user && user['username'],
-      });
+      if (loggedUser) {
+        await this.updateUserProfile(loggedUser.user, {
+          displayName: user && user['username'],
+        });
+      }
 
-      this.alert('Please Verify Your Email: ' + loggedUser.user.email);
+      this.alert('Please Verify Your Email: ' + loggedUser.user.email, 'info');
 
       // send verification
       this.sendEmailVerification();
@@ -142,12 +155,18 @@ export class AuthService {
       this.saveUser(loggedUser.user, {});
 
       // redirect
-      this.redirect('home');
+      this.redirect('home/dashboard');
 
       return loggedUser;
     } catch (error) {
-      const err = error as Error;
-      this.alert(err.message);
+      const err = error as any;
+
+      if (err.code === 'auth/invalid-credential') {
+        this.alert('Wrong password!');
+      } else {
+        this.alert(err.message);
+      }
+
       throw new Error(err.message);
     }
   }
@@ -210,7 +229,7 @@ export class AuthService {
     this.router.navigateByUrl(path);
   }
 
-  alert(msg: string) {
-    console.log(msg);
+  alert(msg: string, type: 'error' | 'success' | 'info' = 'error') {
+    this.toastService[type](msg, 'Authentication error.');
   }
 }

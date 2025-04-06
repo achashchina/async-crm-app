@@ -12,31 +12,67 @@ const redirectUnauthorizedToLogin = () =>
 const redirectLoggedInToDomain = () => redirectLoggedInTo(['/home']);
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'auth/login',
-        pathMatch: 'full',
-    },
-    {
-        path: '',
-        component: AppComponent,
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: 'auth',
+        loadChildren: () => import('./domains/auth/auth.routes'),
+        ...canActivate(redirectLoggedInToDomain),
+      },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./domains/home/home.component').then((c) => c.HomeComponent),
+        ...canActivate(redirectUnauthorizedToLogin),
         children: [
-            {
-                path: 'auth',
-                loadChildren: () => import('./domains/auth/auth.routes'),
-                ...canActivate(redirectLoggedInToDomain),
-            },
-            {
-                path: 'home',
-                loadComponent: () =>
-                    import('./domains/home/home.component').then((c) => c.HomeComponent),
-                ...canActivate(redirectUnauthorizedToLogin),
-            },
-            {
-                path: '**',
-                component: NotFoundComponent,
-            },
+          {
+            path: 'employees',
+            loadComponent: () =>
+              import('./domains/employees/employees.component').then(
+                (c) => c.EmployeesComponent
+              ),
+          },
+          {
+            path: 'onboarding',
+            loadComponent: () =>
+              import('./domains/onboarding/onboarding.component').then(
+                (c) => c.OnboardingComponent
+              ),
+          },
+          {
+            path: 'dashboard',
+            loadComponent: () =>
+              import('./domains/dashboard/dashboard.component').then(
+                (c) => c.DashboardComponent
+              ),
+          },
+          {
+            path: 'ai-help',
+            loadComponent: () =>
+              import('./domains/ai-help/ai-help.component').then(
+                (c) => c.AiHelpComponent
+              ),
+          },
+          {
+            path: 'knowledge-base',
+            loadComponent: () =>
+              import('./domains/knowledge-base/knowledge-base.component').then(
+                (c) => c.KnowledgeBaseComponent
+              ),
+          },
         ],
-    },
-  
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
+    ],
+  },
 ];

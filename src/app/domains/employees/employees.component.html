@@ -1,0 +1,56 @@
+@if (employees$ | async; as employees) {
+<table class="min-w-full text-left text-sm font-light">
+  <thead class="border-b border-b-gray-300">
+    <tr>
+      <th scope="col" class="p-5 border-r border-r-gray-300">Email</th>
+      <th scope="col" class="p-5 border-r border-r-gray-300">Display Name</th>
+      <th scope="col" class="p-5 border-r border-r-gray-300">Start Date</th>
+      <th scope="col" class="p-5 border-r border-r-gray-300">Onboarding</th>
+      <th scope="col" class="text-end"></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (rowData of employees; track $index) {
+    <tr class="border-b border-b-gray-300">
+      <td class="whitespace-nowrap p-2 border-r border-r-gray-300 text-center">
+        {{ rowData.email }}
+      </td>
+      <td class="whitespace-nowrap p-2 border-r border-r-gray-300 text-center">
+        {{ rowData.displayName }}
+      </td>
+      <td class="whitespace-nowrap p-2 border-r border-r-gray-300 text-center">
+        <p-datepicker
+          #datepicker
+          [(ngModel)]="rowData.start"
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          inputId="icondisplay"
+          appendTo="body"
+          dateFormat="dd.mm.yy"
+        />
+      </td>
+      <td class="whitespace-nowrap p-2 border-r border-r-gray-300 text-center">
+        @if (rowData.onboardingDone) {
+        <i class="pi pi-plus-circle pr-2 text-custom-green"></i>
+        } @else {
+        <i class="pi pi-minus-circle pr-2 text-custom-pink"></i>
+        }
+      </td>
+      <td class="text-end">
+        <button class="border-0" type="button">
+          <i class="pi pi-pen-to-square px-5 text-custom-blue"></i>
+        </button>
+        <button
+          #editButton
+          class="border-0"
+          type="button"
+          (click)="changeStartDate(rowData)"
+        >
+          <i class="pi pi-chevron-circle-down px-5 text-custom-green"></i>
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
