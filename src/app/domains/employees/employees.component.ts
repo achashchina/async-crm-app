@@ -48,7 +48,7 @@ export class EmployeesComponent {
         })
       )
     );
-    this.authService.getUsers().subscribe((d) => console.log(d));
+    // this.authService.getUsers().subscribe((d) => console.log(d));
   }
 
   async changeStartDate(user: Employee) {

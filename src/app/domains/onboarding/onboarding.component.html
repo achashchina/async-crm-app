@@ -1,1 +1,126 @@
-<p>onboarding works!</p>
+<div class="flex flex-col bg-white how-do-container p-5">
+  <h2 class="flex my-4 text-custom-green font-bold text-2xl">
+    Welcome Aboard: Your Onboarding Journey
+  </h2>
+  <div class="how-do-grid py-10">
+    <div class="how-do-element first">
+      <div class="pl-12">
+        <span class="number flex">1</span>
+        <div class="info flex flex-col">
+          <span
+            class="bg-white title leading-6 font-semibold text-lg tracking-tight inline relative"
+            >Pre-start Preparation</span
+          >
+          <span
+            class="bg-white text-custom-pink subtitle inline relative uppercase leading-6 font-semibold text-lg py-1"
+            >Today</span
+          >
+          <span class="bg-white description text-sm">
+            <ul>
+              <li>
+                <p-checkbox [(ngModel)]="checked" value="Small" size="small" />
+                Collect necessary documents;
+              </li>
+              <li>
+                <p-checkbox value="Small" size="small" />
+                Provide access to internal systems;
+              </li>
+              <li>
+                <p-checkbox [(ngModel)]="checked1" value="Small" size="small" />
+                Introduction to clinic structure, values, and policies;
+              </li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="how-do-element second">
+      <div class="pl-12">
+        <span class="number flex">2</span>
+        <div class="info bg-white flex flex-col">
+          <span
+            class="title leading-6 font-semibold text-lg tracking-tight inline relative"
+            >First Working Week</span
+          >
+          <span
+            class="subtitle text-custom-pink inline relative uppercase leading-6 font-semibold text-lg py-1"
+            >1-5 business days</span
+          >
+          <span class="description text-sm">
+            <ul>
+              <li>
+                <p-checkbox [(ngModel)]="checked" value="Small" size="small" />
+                Welcome meeting with mentor/HR
+              </li>
+              <li>
+                <p-checkbox
+                  [(ngModel)]="nonchecked"
+                  value="Small"
+                  size="small"
+                />
+                Tour of the clinic
+              </li>
+              <li>
+                <p-checkbox
+                  [(ngModel)]="nonchecked"
+                  value="Small"
+                  size="small"
+                />
+                Distribution of equipment and uniform
+              </li>
+              <li>
+                <p-checkbox [(ngModel)]="checked" value="Small" size="small" />
+                Safety and hygiene briefing
+              </li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="how-do-element third">
+      <div class="content pl-12">
+        <span class="number flex">3</span>
+        <div class="info bg-white flex flex-col">
+          <span
+            class="title leading-6 font-semibold text-lg tracking-tight inline relative"
+            >2-3 Working Week</span
+          >
+          <span
+            class="subtitle text-custom-pink inline relative uppercase leading-6 font-semibold text-lg py-1"
+            >5-10 business days</span
+          >
+          <span class="description text-sm">
+            <ul>
+              <li>Introduction to workflows, systems, and documentation</li>
+              <li>Shadowing experienced staff</li>
+              <li>Starting simple tasks under supervision</li>
+            </ul>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="how-do-element fourth">
+      <div class="content pl-12">
+        <span class="number flex">4</span>
+        <div class="info bg-white flex flex-col">
+          <span
+            class="title leading-6 font-semibold text-lg tracking-tight inline relative"
+            >Adaptation</span
+          >
+          <span
+            class="subtitle inline text-custom-pink relative uppercase leading-6 font-semibold text-lg py-1"
+            >1-3 months</span
+          >
+          <span class="description text-sm">
+            <ul>
+              <li>Regular feedback sessions</li>
+              <li>Gradual increase in responsibilities</li>
+              <li>Performance review and final adaptation meeting</li>
+            </ul>
+          </span>
+        </div>
+        <span class="bg-white"></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,8 +20,8 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { routes } from './app.routes';
-import { environment } from '../environments/environments';
 import { MessageService } from 'primeng/api';
+import { environment } from '../environments/environment';
 
 
 export const appConfig: ApplicationConfig = {
